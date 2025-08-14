@@ -19,10 +19,9 @@ shipblu_y:  .res 1
 pizzaball_x: .res 1
 pizzaball_y: .res 1
 pizzaball_dir: .res 1 ; 0 = right, 1 = left
+pizzaball_visible_flag: .res 1
 laser_x: .res 1
 laser_y: .res 1
-laser_active: .res 1
-flicker_timer: .res 1
 sine_index: .res 1
 world: .res 2
 scroll_y: .res 1

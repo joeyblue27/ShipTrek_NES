@@ -63,7 +63,7 @@ DoneLoadingWorld:
 
     LDX #$00
 SetAttributes:
-    LDA #$AA ; or #$FF, #$00, or any pattern you like
+    LDA #$AA ; #$00, #$55, #$AA, #$FF = 0-3 palletes
     STA $2007
     INX
     CPX #$40
@@ -102,14 +102,20 @@ LoadWorld2:
 DoneLoadingWorld2:
     LDX #$00
 
-    LDA #$23
+    LDA #$2B
     STA $2006
     LDA #$C0
     STA $2006
 
     LDX #$00
-    
 
+SetAttributes2:
+    LDA #$AA
+    STA $2007
+    INX
+    CPX #$40
+    BNE SetAttributes2
+    
 shipblu_sprite:
     LDA shipblu, X
     STA $0200, X
@@ -118,21 +124,22 @@ shipblu_sprite:
     BNE shipblu_sprite
     LDX #$00
 
-pizzaballsprite:
-    LDA pizzaball, X
-    STA $0218, X
-    INX
-    CPX #$04
-    BNE pizzaballsprite 
-    LDX #$00
-
 lasersprite:
     LDA laser, X
-    STA $021C, X
+    STA $0218, X
     INX
     CPX #$04
     BNE lasersprite
     LDX #$00 
+
+pizzaballsprite:
+    LDA pizzaball, X
+    STA $021C, X
+    INX
+    CPX #$10
+    BNE pizzaballsprite 
+    LDX #$00
+
     
 
 
@@ -141,6 +148,7 @@ lasersprite:
 
     LDA #%10010000 ; enable NMI change background to use second chr set of tiles ($1000)
     STA $2000
+    
     ; Enabling sprites and background for left-most 8 pixels
     ; Enable sprites and background
     LDA #%00011110

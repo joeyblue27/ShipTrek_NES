@@ -17,11 +17,14 @@
     LDA controls
     CMP #BUTTON_DOWN
     BNE @DONT_DOWN
-    LDA shipblu_y 
+    LDA shipblu_y
     CLC
     ADC #2
+    CMP #$D8        ; check if new Y would be too far
+    BCS @SKIP_DOWN    ; if carry is set, it’s >= MAX_Y
     STA shipblu_y
-    
+  @SKIP_DOWN:
+
   @DONT_DOWN:
     LDA controls
     AND #BUTTON_LEFT
@@ -47,6 +50,7 @@
     BNE @DONT_DOWN_LEFT
     DEC shipblu_x
     INC shipblu_y
+    
    @DONT_DOWN_LEFT:
     LDA controls 
     CMP #BUTTON_DOWN|BUTTON_RIGHT

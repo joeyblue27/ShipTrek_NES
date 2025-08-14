@@ -13,6 +13,8 @@ NMI:
 
         ; Check for vertical wrap (after 240 pixels)
     LDA scroll_y
+    LDA #%10010010
+    STA $2000
     CMP #$F0            ; If vertical scroll reaches 240, wrap around
     BNE @DoneVerticalScroll
 
