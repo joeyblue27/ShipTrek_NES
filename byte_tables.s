@@ -1,6 +1,6 @@
 palletes:
   .byte $0F,$1b,$2b,$37,$0F,$05,$16,$27,$0F,$22,$01,$10,$0F,$2D,$11,$22  ;background palette data
-  .byte $0F,$1b,$2b,$37,$0F,$06,$16,$26,$0F,$0C,$31,$32,$0F,$1c,$36,$27  ;sprite palette data
+  .byte $0F,$1c,$2b,$28,$0F,$05,$27,$37,$0F,$0C,$31,$32,$0F,$1c,$36,$27  ;sprite palette data
 
 WorldData:
   .incbin "maps/ntable1a.map"  
@@ -22,6 +22,15 @@ pizzaball:
   .byte $10, $70, $01, $08
   .byte $10, $71, $01, $10
 
+PizzaBallColors:
+  ; 3 rotating sets for palette 1
+   .byte $05  ; frame 0
+   .byte $27 ; frame 1
+   .byte $37
+
+
 laser:
   .byte $08, $23, $02, $08
+
+
   

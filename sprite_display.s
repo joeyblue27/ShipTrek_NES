@@ -30,24 +30,20 @@ STA $218
 LDA laser_x
 STA $21B
 
-LDA pizzaball_y
-STA $21C
-STA $220
-CLC
-ADC #$08
-STA $224
-STA $228
-LDA pizzaball_x
-STA $21F
-CLC
-ADC #$08
-STA $223
-SEC
-SBC #$08
-STA $227
-CLC
-ADC #$08
-STA $22B
+;LDA pizzaball_y
+;STA $21C
+;STA $220
+;CLC
+;ADC #$08
+;STA $224
+;STA $228
+;LDA pizzaball_x
+;STA $21F
+;STA $227
+;CLC
+;ADC #$08
+;STA $223
+;STA $22B
 
 
 

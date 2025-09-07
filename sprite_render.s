@@ -14,7 +14,7 @@ SpriteDMA = $4014
     STA $2006
 
     LDX #$00
-    
+
 colorpalletes:
     LDA palletes, X
     STA $2007 ; $3F00, $3F01, $3F02 => $3F1F
@@ -22,7 +22,7 @@ colorpalletes:
     CPX #$20
     BNE colorpalletes    
     LDX #$00
-
+    
     ; Initialize world to point to world data
     LDA #<WorldData
     STA world
@@ -63,19 +63,17 @@ DoneLoadingWorld:
 
     LDX #$00
 SetAttributes:
-    LDA #$AA ; #$00, #$55, #$AA, #$FF = 0-3 palletes
+    LDA #$AA ; or #$FF, #$00, or any pattern you like
     STA $2007
     INX
     CPX #$40
     BNE SetAttributes
-
-    ; Initialize world to point to world data
+    
     LDA #<WorldData2
     STA world
     LDA #>WorldData2
     STA world+1
 
-    ; setup address in PPU for nametable data
     BIT $2002
     LDA #$28
     STA $2006
@@ -115,7 +113,7 @@ SetAttributes2:
     INX
     CPX #$40
     BNE SetAttributes2
-    
+
 shipblu_sprite:
     LDA shipblu, X
     STA $0200, X
@@ -139,20 +137,3 @@ pizzaballsprite:
     CPX #$10
     BNE pizzaballsprite 
     LDX #$00
-
-    
-
-
-; Enable interrupts
-    CLI
-
-    LDA #%10010000 ; enable NMI change background to use second chr set of tiles ($1000)
-    STA $2000
-    
-    ; Enabling sprites and background for left-most 8 pixels
-    ; Enable sprites and background
-    LDA #%00011110
-    STA $2001
-
-Loop:
-    JMP Loop

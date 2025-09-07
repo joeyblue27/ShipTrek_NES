@@ -19,12 +19,15 @@ shipblu_y:  .res 1
 pizzaball_x: .res 1
 pizzaball_y: .res 1
 pizzaball_dir: .res 1 ; 0 = right, 1 = left
-pizzaball_visible_flag: .res 1
 laser_x: .res 1
 laser_y: .res 1
-sine_index: .res 1
+laser_active: .res 1
 world: .res 2
-scroll_y: .res 1
+coarse_y:   .res 1   ; 0–29 (tile rows)
+fine_y:     .res 1   ; 0–7  (pixels inside a tile row)
+nt_y:       .res 1   ; vertical nametable bit (0 or 1)
+pizza_color_index: .res 1
+pizza_timer: .res 1
 
 
 .segment "STARTUP"
@@ -79,10 +82,11 @@ CLEARMEM:
 .include "sprite_render.s"
 .include "scroll_screen.s"
 .include "ship_controls.s"
-.include "laser_fire.s"
 .include "sprite_display.s"
+.include "laser_fire.s"
 .include "rival_spawn.s"
-.include "controllers.s"  
+.include "controllers.s"
+.include "color_flicker.s"  
 .include "byte_tables.s"  
 
 .segment "VECTORS"

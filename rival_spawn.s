@@ -1,11 +1,18 @@
+LDA pizza_timer
+BNE @SKIP_MOVE     ; if timer > 0, skip
+
 LDA pizzaball_dir
 BEQ @MOVE_RIGHT
 
 @MOVE_LEFT:
-    DEC pizzaball_x
-    DEC pizzaball_x
-    INC pizzaball_y
-    INC pizzaball_y
+    LDA pizzaball_x
+    SEC 
+    SBC #1
+    STA pizzaball_x
+    LDA pizzaball_y
+    CLC 
+    ADC #2
+    STA pizzaball_y
     LDA pizzaball_x
     CMP #$10 ; Left boundary
     BCS @AFTER_MOVE  ; If still >= $20, continue moving
@@ -20,8 +27,8 @@ BEQ @MOVE_RIGHT
 
 @MOVE_RIGHT:
     LDA pizzaball_x
-    CLC
-    ADC #2
+    CLC 
+    ADC #1
     STA pizzaball_x
     LDA pizzaball_x
     CMP #$D0 ; Right boundary
@@ -30,6 +37,6 @@ BEQ @MOVE_RIGHT
     STA pizzaball_dir
 
 @AFTER_MOVE:
-
+@SKIP_MOVE:
 
 RTI
